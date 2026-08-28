@@ -3,7 +3,7 @@
   <img src="docs/images/app-logo.png" alt="ScripsQuest logo" width="180" />
 
   <p align="center">
-    <img src="docs/images/image-removebg-preview (21) 1 (1).png" alt="ScripsQuest mockup" width="520" />
+    <img src="docs/images/image-removebg-preview (21) 1 (1).png" alt="ScripsQuest mockup" width="340" />
   </p>
 
   # ScripsQuest
