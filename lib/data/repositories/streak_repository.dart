@@ -48,6 +48,10 @@ class StreakRepository {
         },
       );
 
+      if (response == null || (response as List).isEmpty) {
+        throw DatabaseException('Failed to record active day: empty response');
+      }
+
       return StreakHistoryModel.fromJson(
         response.first as Map<String, dynamic>,
       );

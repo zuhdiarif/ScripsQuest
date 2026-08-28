@@ -6,7 +6,7 @@ class AppException implements Exception {
   const AppException(this.message, {this.code, this.details});
 
   @override
-  String toString() => 'AppException: $message (code: $code)';
+  String toString() => message;
 }
 
 class AuthExceptionWrapper extends AppException {

@@ -30,11 +30,11 @@ class QuestTile extends StatelessWidget {
   (Color, Color, String) _getStatusAttributes(QuestStatus status) {
     switch (status) {
       case QuestStatus.notStarted:
-        return (const Color(0xFFF3F4F6), AppColors.textSecondary, 'Not Started');
+        return (const Color(0xFF2E3152), AppColors.textSecondary, 'Not Started');
       case QuestStatus.inProgress:
-        return (AppColors.warningLight, AppColors.accentDark, 'In Progress');
+        return (const Color(0x33F59E0B), AppColors.warning, 'In Progress');
       case QuestStatus.completed:
-        return (AppColors.successLight, AppColors.success, 'Completed');
+        return (const Color(0x3310B981), AppColors.success, 'Completed');
     }
   }
 
@@ -62,23 +62,27 @@ class QuestTile extends StatelessWidget {
                   quest.title,
                   style: GoogleFonts.inter(
                     fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textWhite,
                   ),
                 ),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: AppColors.warningLight,
+                  color: AppColors.accent.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: AppColors.accent.withValues(alpha: 0.3),
+                    width: 1,
+                  ),
                 ),
                 child: Text(
                   '+${quest.xpReward} XP',
                   style: GoogleFonts.inter(
                     fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.accentDark,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.accent,
                   ),
                 ),
               ),
@@ -122,7 +126,7 @@ class QuestTile extends StatelessWidget {
                     statusText,
                     style: GoogleFonts.inter(
                       fontSize: 12,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w700,
                       color: statusTextColor,
                     ),
                   ),

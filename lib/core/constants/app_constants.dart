@@ -1,7 +1,11 @@
 class AppConstants {
   AppConstants._();
 
-  static const String appName = 'Thesis Quest';
+  static const String appName = 'ScripsQuest';
+
+  static const String supabaseUrl = 'https://fxthtprqiaatxgtkwpdm.supabase.co';
+  static const String supabaseAnonKey =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ4dGh0cHJxaWFhdHhndGt3cGRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NTE2NTAsImV4cCI6MjEwMzQyNzY1MH0.lgQMITTcrMaDoDALytwl8I28j4VakNlXFJ-RaI9J9uU';
 
   static const int smallQuestXp = 10;
   static const int mainQuestXp = 25;

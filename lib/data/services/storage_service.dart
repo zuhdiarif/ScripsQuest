@@ -23,6 +23,23 @@ class StorageService {
     return getAvatarUrl(userId, fileExt: fileExt);
   }
 
+  Future<String> uploadGuildIcon({
+    required String guildIdOrName,
+    required Uint8List fileBytes,
+    required String fileExt,
+  }) async {
+    final fileName = 'guild_${DateTime.now().millisecondsSinceEpoch}.$fileExt';
+    final path = 'guilds/$fileName';
+    await _client.storage.from(SupabaseConstants.avatarsBucket).uploadBinary(
+          path,
+          fileBytes,
+          fileOptions: const FileOptions(upsert: true),
+        );
+    return _client.storage
+        .from(SupabaseConstants.avatarsBucket)
+        .getPublicUrl(path);
+  }
+
   String getAvatarUrl(String userId, {String fileExt = 'png'}) {
     final path = userId.contains('/') ? userId : '$userId/avatar.$fileExt';
     return _client.storage

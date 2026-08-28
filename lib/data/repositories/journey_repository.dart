@@ -42,6 +42,10 @@ class JourneyRepository {
         journey.toJson(),
       );
 
+      if (response == null || (response as List).isEmpty) {
+        throw DatabaseException('Failed to create journey: empty response');
+      }
+
       return ThesisJourneyModel.fromJson(
         response.first as Map<String, dynamic>,
       );
@@ -59,6 +63,10 @@ class JourneyRepository {
         journey.toJson(),
         match: {'id': journey.id},
       );
+
+      if (response == null || (response as List).isEmpty) {
+        throw DatabaseException('Failed to update journey: empty response');
+      }
 
       return ThesisJourneyModel.fromJson(
         response.first as Map<String, dynamic>,

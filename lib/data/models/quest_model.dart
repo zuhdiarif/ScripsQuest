@@ -92,11 +92,8 @@ class QuestModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
+    final map = <String, dynamic>{
       'user_id': userId,
-      'goal_id': goalId,
-      'parent_quest_id': parentQuestId,
       'type': type.toJson(),
       'title': title,
       'description': description,
@@ -108,6 +105,16 @@ class QuestModel extends Equatable {
       'created_at': createdAt.toIso8601String(),
       'completed_at': completedAt?.toIso8601String(),
     };
+    if (id.isNotEmpty) {
+      map['id'] = id;
+    }
+    if (goalId != null && goalId!.isNotEmpty) {
+      map['goal_id'] = goalId;
+    }
+    if (parentQuestId != null && parentQuestId!.isNotEmpty) {
+      map['parent_quest_id'] = parentQuestId;
+    }
+    return map;
   }
 
   QuestModel copyWith({

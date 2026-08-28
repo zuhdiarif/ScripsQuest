@@ -13,20 +13,30 @@ class RevisionQuestView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: Text(
-          'Revision Quest',
-          style: GoogleFonts.inter(
-            fontWeight: FontWeight.w600,
+          'Misi Revisi',
+          style: GoogleFonts.cinzel(
+            fontWeight: FontWeight.w700,
+            color: AppColors.yellowNormal,
           ),
         ),
       ),
-      body: Center(
-        child: Text(
-          'Coming Soon',
-          style: GoogleFonts.inter(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: AppColors.textSecondary,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: AppColors.purpleGradient,
+        ),
+        child: Center(
+          child: Text(
+            'Coming Soon',
+            style: GoogleFonts.inter(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: AppColors.textSecondary,
+            ),
           ),
         ),
       ),

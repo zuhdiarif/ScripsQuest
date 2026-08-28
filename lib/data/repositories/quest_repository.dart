@@ -65,6 +65,10 @@ class QuestRepository {
         quest.toJson(),
       );
 
+      if (response == null || (response as List).isEmpty) {
+        throw DatabaseException('Failed to create quest: empty response');
+      }
+
       return QuestModel.fromJson(
         response.first as Map<String, dynamic>,
       );
@@ -82,6 +86,10 @@ class QuestRepository {
         quest.toJson(),
         match: {'id': quest.id},
       );
+
+      if (response == null || (response as List).isEmpty) {
+        throw DatabaseException('Failed to update quest: empty response');
+      }
 
       return QuestModel.fromJson(
         response.first as Map<String, dynamic>,
@@ -124,9 +132,31 @@ class QuestRepository {
         match: {'id': questId},
       );
 
+      if (response == null || (response as List).isEmpty) {
+        throw DatabaseException('Failed to update quest status: empty response');
+      }
+
       return QuestModel.fromJson(
         response.first as Map<String, dynamic>,
       );
+    } on AppException {
+      rethrow;
+    } catch (e) {
+      throw DatabaseException(e.toString());
+    }
+  }
+
+  Future<List<QuestModel>> createQuestsBatch(List<QuestModel> quests) async {
+    try {
+      final data = quests.map((q) => q.toJson()).toList();
+      final response = await _databaseService.insert(
+        SupabaseConstants.questsTable,
+        data,
+      );
+
+      return (response as List)
+          .map((json) => QuestModel.fromJson(json as Map<String, dynamic>))
+          .toList();
     } on AppException {
       rethrow;
     } catch (e) {

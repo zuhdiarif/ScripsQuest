@@ -57,6 +57,10 @@ class BadgeRepository {
         },
       );
 
+      if (response == null || (response as List).isEmpty) {
+        throw DatabaseException('Failed to unlock badge: empty response');
+      }
+
       return UserBadgeModel.fromJson(
         response.first as Map<String, dynamic>,
       );

@@ -16,6 +16,10 @@ class GuildRepository {
         guild.toJson(),
       );
 
+      if (response == null || (response as List).isEmpty) {
+        throw DatabaseException('Failed to create guild: empty response');
+      }
+
       final createdGuild = GuildModel.fromJson(
         response.first as Map<String, dynamic>,
       );

@@ -9,7 +9,10 @@ class OnboardingViewModel extends ChangeNotifier {
   String? _errorMessage;
   ThesisStage? _selectedStage;
   String _topic = '';
-  String _currentGoal = '';
+  String _researchField = 'Machine Learning';
+  String _currentGoal = 'Proposal';
+  DateTime? _graduationTarget;
+  String _weeklyTarget = '3 - 5 Quest / Minggu';
   int _currentStep = 0;
 
   OnboardingViewModel(this._journeyRepository);
@@ -18,7 +21,10 @@ class OnboardingViewModel extends ChangeNotifier {
   String? get errorMessage => _errorMessage;
   ThesisStage? get selectedStage => _selectedStage;
   String get topic => _topic;
+  String get researchField => _researchField;
   String get currentGoal => _currentGoal;
+  DateTime? get graduationTarget => _graduationTarget;
+  String get weeklyTarget => _weeklyTarget;
   int get currentStep => _currentStep;
 
   void clearError() {
@@ -36,8 +42,28 @@ class OnboardingViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setResearchField(String field) {
+    _researchField = field;
+    notifyListeners();
+  }
+
   void setGoal(String goal) {
     _currentGoal = goal;
+    notifyListeners();
+  }
+
+  void setGraduationTarget(DateTime target) {
+    _graduationTarget = target;
+    notifyListeners();
+  }
+
+  void setWeeklyTarget(String target) {
+    _weeklyTarget = target;
+    notifyListeners();
+  }
+
+  void setStep(int step) {
+    _currentStep = step;
     notifyListeners();
   }
 
@@ -58,7 +84,10 @@ class OnboardingViewModel extends ChangeNotifier {
   void reset() {
     _selectedStage = null;
     _topic = '';
-    _currentGoal = '';
+    _researchField = 'Machine Learning';
+    _currentGoal = 'Proposal';
+    _graduationTarget = null;
+    _weeklyTarget = '3 - 5 Quest / Minggu';
     _currentStep = 0;
     _errorMessage = null;
     _isLoading = false;
@@ -66,23 +95,18 @@ class OnboardingViewModel extends ChangeNotifier {
   }
 
   Future<ThesisJourneyModel?> submitJourney(String userId) async {
-    if (_selectedStage == null) {
-      _errorMessage = 'Thesis stage is required';
-      notifyListeners();
-      return null;
-    }
-
     _isLoading = true;
     _errorMessage = null;
     notifyListeners();
 
     try {
+      final stage = _selectedStage ?? ThesisStage.proposal;
       final journey = ThesisJourneyModel(
         id: '',
         userId: userId,
-        stage: _selectedStage!,
+        stage: stage,
         topic: _topic.isEmpty ? null : _topic,
-        currentGoal: _currentGoal,
+        currentGoal: _currentGoal.isEmpty ? 'Proposal' : _currentGoal,
         status: JourneyStatus.active,
         createdAt: DateTime.now(),
       );

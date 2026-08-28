@@ -45,4 +45,9 @@ class StreakCalculator {
     );
     return dateOnly == today || dateOnly == yesterday;
   }
+
+  static List<bool> calculateWeekStreak(int streakCount) {
+    final activeDays = streakCount.clamp(0, 7);
+    return List.generate(7, (index) => index < activeDays);
+  }
 }

@@ -42,4 +42,26 @@ class AuthService {
   Future<void> resetPassword(String email) async {
     await _client.auth.resetPasswordForEmail(email);
   }
+
+  Future<AuthResponse> verifyOtp({
+    required String email,
+    required String token,
+    OtpType type = OtpType.signup,
+  }) async {
+    return await _client.auth.verifyOTP(
+      email: email,
+      token: token,
+      type: type,
+    );
+  }
+
+  Future<void> resendOtp({
+    required String email,
+    OtpType type = OtpType.signup,
+  }) async {
+    await _client.auth.resend(
+      type: type,
+      email: email,
+    );
+  }
 }

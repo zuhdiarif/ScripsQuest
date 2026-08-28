@@ -2,6 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:raion_hackjam/data/repositories/auth_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+enum SignUpResult {
+  autoConfirmed,
+  confirmationRequired,
+  failed,
+}
+
 class AuthViewModel extends ChangeNotifier {
   final AuthRepository _authRepository;
 
@@ -50,7 +56,7 @@ class AuthViewModel extends ChangeNotifier {
     }
   }
 
-  Future<bool> signUp(
+  Future<SignUpResult> signUp(
     String email,
     String password, {
     String? username,
@@ -65,15 +71,21 @@ class AuthViewModel extends ChangeNotifier {
         password: password,
         username: username,
       );
+
       _currentUser = response.user;
       _isLoading = false;
       notifyListeners();
-      return true;
+
+      if (response.session != null) {
+        return SignUpResult.autoConfirmed;
+      } else {
+        return SignUpResult.confirmationRequired;
+      }
     } catch (e) {
       _errorMessage = e.toString();
       _isLoading = false;
       notifyListeners();
-      return false;
+      return SignUpResult.failed;
     }
   }
 
@@ -91,6 +103,64 @@ class AuthViewModel extends ChangeNotifier {
       _errorMessage = e.toString();
       _isLoading = false;
       notifyListeners();
+    }
+  }
+
+  Future<bool> verifyOtp(String email, String token) async {
+    _isLoading = true;
+    _errorMessage = null;
+    notifyListeners();
+
+    try {
+      final response = await _authRepository.verifyOtp(
+        email: email,
+        token: token,
+      );
+      _currentUser = response.user;
+      _isLoading = false;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      _errorMessage = e.toString();
+      _isLoading = false;
+      notifyListeners();
+      return false;
+    }
+  }
+
+  Future<bool> resendOtp(String email) async {
+    _isLoading = true;
+    _errorMessage = null;
+    notifyListeners();
+
+    try {
+      await _authRepository.resendOtp(email: email);
+      _isLoading = false;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      _errorMessage = e.toString();
+      _isLoading = false;
+      notifyListeners();
+      return false;
+    }
+  }
+
+  Future<bool> resetPassword(String email) async {
+    _isLoading = true;
+    _errorMessage = null;
+    notifyListeners();
+
+    try {
+      await _authRepository.resetPassword(email);
+      _isLoading = false;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      _errorMessage = e.toString();
+      _isLoading = false;
+      notifyListeners();
+      return false;
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:raion_hackjam/data/models/quest_model.dart';
 import 'package:raion_hackjam/data/repositories/quest_repository.dart';
+import 'package:raion_hackjam/logic/thesis_curriculum.dart';
 
 class QuestManagementViewModel extends ChangeNotifier {
   final QuestRepository _questRepository;
@@ -52,12 +53,76 @@ class QuestManagementViewModel extends ChangeNotifier {
 
     try {
       _quests = await _questRepository.getQuestsByUser(userId);
+      if (_quests.isEmpty) {
+        await seedInitialThesisQuests(userId);
+      } else {
+        _isLoading = false;
+        notifyListeners();
+      }
+    } catch (e) {
+      _errorMessage = e.toString();
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> seedInitialThesisQuests(String userId) async {
+    try {
+      final initialQuests =
+          ThesisCurriculum.generateInitialThesisQuests(userId);
+
+      for (final quest in initialQuests) {
+        await _questRepository.createQuest(quest);
+      }
+
+      _quests = await _questRepository.getQuestsByUser(userId);
       _isLoading = false;
       notifyListeners();
     } catch (e) {
       _errorMessage = e.toString();
       _isLoading = false;
       notifyListeners();
+    }
+  }
+
+  Future<bool> createQuest(QuestModel quest) async {
+    _isLoading = true;
+    _errorMessage = null;
+    notifyListeners();
+
+    try {
+      final created = await _questRepository.createQuest(quest);
+      _quests.add(created);
+      _isLoading = false;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      _errorMessage = e.toString();
+      _isLoading = false;
+      notifyListeners();
+      return false;
+    }
+  }
+
+  Future<bool> updateQuest(QuestModel quest) async {
+    _isLoading = true;
+    _errorMessage = null;
+    notifyListeners();
+
+    try {
+      final updated = await _questRepository.updateQuest(quest);
+      final index = _quests.indexWhere((q) => q.id == quest.id);
+      if (index != -1) {
+        _quests[index] = updated;
+      }
+      _isLoading = false;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      _errorMessage = e.toString();
+      _isLoading = false;
+      notifyListeners();
+      return false;
     }
   }
 

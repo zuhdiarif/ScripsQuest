@@ -74,8 +74,7 @@ class ThesisJourneyModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
+    final map = <String, dynamic>{
       'user_id': userId,
       'stage': stage.toJson(),
       'topic': topic,
@@ -83,6 +82,10 @@ class ThesisJourneyModel extends Equatable {
       'status': status.toJson(),
       'created_at': createdAt.toIso8601String(),
     };
+    if (id.isNotEmpty) {
+      map['id'] = id;
+    }
+    return map;
   }
 
   ThesisJourneyModel copyWith({

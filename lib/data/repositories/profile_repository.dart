@@ -36,6 +36,10 @@ class ProfileRepository {
         profile.toJson(),
       );
 
+      if (response == null || (response as List).isEmpty) {
+        throw DatabaseException('Failed to create profile: empty response');
+      }
+
       return ProfileModel.fromJson(
         response.first as Map<String, dynamic>,
       );
@@ -53,6 +57,10 @@ class ProfileRepository {
         profile.toJson(),
         match: {'id': profile.id},
       );
+
+      if (response == null || (response as List).isEmpty) {
+        throw DatabaseException('Failed to update profile: empty response');
+      }
 
       return ProfileModel.fromJson(
         response.first as Map<String, dynamic>,
