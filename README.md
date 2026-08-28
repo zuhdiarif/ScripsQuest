@@ -138,6 +138,6 @@ To get a local copy up and running, follow these simple steps.
 
 | Name | Role | Responsibilities | Contact |
 | --- | --- | --- | --- |
-| **Zuhdi Arif** | Mobile Engineer & Lead Developer | Flutter application development, state management, Supabase backend integration, and logic layer implementation | [GitHub](https://github.com/zuhdiarif) |
-| **UI/UX Team** | UI/UX Designer | RPG fantasy game interface design, interactive prototyping, and visual asset generation | [Figma](https://figma.com) |
-| **Product Team** | Product Manager | User journey mapping, academic thesis curriculum design, and gamification milestone strategy | [Raion Community](https://raion.ub.ac.id) |
+| **Zuhdi Arif** | Mobile Engineer | Flutter application development, state management, Supabase backend integration, and logic layer implementation | [GitHub](https://github.com/zuhdiarif) |
+| **Farah Fadhilah Abhad** | UI/UX Designer | RPG fantasy game interface design, interactive prototyping, and visual asset generation | [Figma](https://figma.com) |
+| **Nazril Farrel Insava** | Product Manager | User journey mapping, academic thesis curriculum design, and gamification milestone strategy | [Github]       |
