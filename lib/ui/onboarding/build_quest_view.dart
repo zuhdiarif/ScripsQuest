@@ -500,10 +500,18 @@ class _BuildQuestViewState extends State<BuildQuestView> {
           ),
           const SizedBox(height: 32),
           Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(22),
             decoration: BoxDecoration(
-              color: AppColors.purpleLight,
+              color: const Color(0xFFF1F0FB),
               borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: const Color(0xFFE2DCF7), width: 1.5),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.15),
+                  blurRadius: 16,
+                  offset: const Offset(0, 6),
+                ),
+              ],
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -519,8 +527,15 @@ class _BuildQuestViewState extends State<BuildQuestView> {
                 const SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
-                    color: AppColors.white50,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF4C3E8A).withValues(alpha: 0.08),
+                        blurRadius: 10,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
                   ),
                   child: TextField(
                     controller: _topicController,
@@ -528,17 +543,31 @@ class _BuildQuestViewState extends State<BuildQuestView> {
                     onChanged: (val) => vm.setTopic(val),
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      color: AppColors.textDark,
-                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFF1E1738),
+                      fontWeight: FontWeight.w600,
                     ),
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
                       hintText:
                           'Contoh: Implementasi Sistem Rekomendasi Berbasis Machine Learning',
                       hintStyle: GoogleFonts.inter(
                         fontSize: 13,
-                        color: AppColors.grey300,
+                        color: const Color(0xFF8A82A8),
+                        fontWeight: FontWeight.w400,
                       ),
-                      border: InputBorder.none,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: const BorderSide(color: Color(0xFFDED8F6), width: 1.5),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: const BorderSide(color: Color(0xFFDED8F6), width: 1.5),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: const BorderSide(color: AppColors.purpleNormal, width: 2),
+                      ),
                       contentPadding: const EdgeInsets.all(16),
                     ),
                   ),
@@ -558,8 +587,16 @@ class _BuildQuestViewState extends State<BuildQuestView> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                     decoration: BoxDecoration(
-                      color: AppColors.white50,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: const Color(0xFFDED8F6), width: 1.5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFF4C3E8A).withValues(alpha: 0.08),
+                          blurRadius: 10,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
                     ),
                     child: Row(
                       children: [
@@ -577,7 +614,7 @@ class _BuildQuestViewState extends State<BuildQuestView> {
                             style: GoogleFonts.inter(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
-                              color: AppColors.textDark,
+                              color: const Color(0xFF1E1738),
                             ),
                           ),
                         ),
@@ -709,10 +746,18 @@ class _BuildQuestViewState extends State<BuildQuestView> {
           ),
           const SizedBox(height: 32),
           Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(22),
             decoration: BoxDecoration(
-              color: AppColors.purpleLight,
+              color: const Color(0xFFF1F0FB),
               borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: const Color(0xFFE2DCF7), width: 1.5),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.15),
+                  blurRadius: 16,
+                  offset: const Offset(0, 6),
+                ),
+              ],
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -731,8 +776,16 @@ class _BuildQuestViewState extends State<BuildQuestView> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                     decoration: BoxDecoration(
-                      color: AppColors.white50,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: const Color(0xFFDED8F6), width: 1.5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFF4C3E8A).withValues(alpha: 0.08),
+                          blurRadius: 10,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
                     ),
                     child: Row(
                       children: [
@@ -742,7 +795,7 @@ class _BuildQuestViewState extends State<BuildQuestView> {
                             style: GoogleFonts.inter(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
-                              color: AppColors.textDark,
+                              color: const Color(0xFF1E1738),
                             ),
                           ),
                         ),
@@ -766,8 +819,16 @@ class _BuildQuestViewState extends State<BuildQuestView> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                     decoration: BoxDecoration(
-                      color: AppColors.white50,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: const Color(0xFFDED8F6), width: 1.5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFF4C3E8A).withValues(alpha: 0.08),
+                          blurRadius: 10,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
                     ),
                     child: Row(
                       children: [
@@ -785,7 +846,7 @@ class _BuildQuestViewState extends State<BuildQuestView> {
                             style: GoogleFonts.inter(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
-                              color: AppColors.textDark,
+                              color: const Color(0xFF1E1738),
                             ),
                           ),
                         ),
